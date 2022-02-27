@@ -24,8 +24,8 @@ vim.cmd [[
 ]]
 
 -- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
+local status_ok_packer, packer = pcall(require, "packer")
+if not status_ok_packer then
   return
 end
 
@@ -69,6 +69,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "saecki/crates.nvim" -- rust creates completion
   use "hrsh7th/cmp-nvim-lsp"
 
   -- snippets
@@ -83,6 +84,9 @@ return packer.startup(function(use)
 
   -- Telescope
   use "nvim-telescope/telescope.nvim"
+  use "nvim-telescope/telescope-packer.nvim" -- Integration of Telescope and Packer
+  use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
+  use "nvim-telescope/telescope-file-browser.nvim"
 
   -- Treesitter
   use {
@@ -94,9 +98,15 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
 
+  -- rust
+  use "simrat39/rust-tools.nvim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
 end)
+
+
+

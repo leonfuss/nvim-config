@@ -92,5 +92,17 @@ telescope.setup {
     --   extension_config_key = value,
     -- }
     -- please take a look at the readme of the extension you want to configure
+    fzf = {
+      fuzzy = true,
+      override_generic_sortter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    },
+    packer = {
+      theme = "ivy",
+      layout_config = {
+        height = .5
+      }
+    }
   },
 }

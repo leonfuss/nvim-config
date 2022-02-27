@@ -31,6 +31,8 @@ if not config_status_ok then
   return
 end
 
+vim.g.nvim_tree_respect_buf_cwd = 1
+
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup {
