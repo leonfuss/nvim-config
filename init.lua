@@ -1,24 +1,42 @@
+---------------------
+-- General Setting --
+---------------------
+
 require "globals"
 require "general"
+
+require "config.whichkey"       -- initialize keymap
+
 require "mappings"
+
+-------------
+-- Packker --
+-------------
+
+require "plugins"
+
+-------------------
+-- startup speed --
+-------------------
 
 if pcall(require,"impatient") then
     require("impatient")
 end
 
-require "plugins"
+----------------------
+-- Plugins specific --
+----------------------
 
-require "config.feline"
-require "config.cmp"
---require "config.lsp"
-require "config.rust-tools"
--- require "user.options"
--- require "user.keymaps"
--- require "user.plugins"
--- require "user.colorscheme"
--- require "user.cmp"
--- require "user.lsp"
-require "user.telescope"
+require "config.feline"         -- statusline
+require "config.cmp"            -- completion
+require "config.lsp"            -- LSP
+require "config.lspsaga"        -- Pretier Lsp
+require "config.comment"        -- Commment.nvim
+require "config.telescope"      -- Telescope
+
+
+
+-- require "user.telescope"
 require "user.treesitter"
 require "user.autopairs"
 -- require "user.comment"
@@ -34,5 +52,5 @@ require "user.alpha"
 -- require "user.whichkey"
 -- require "user.autocommands"
 -- require "user.rusc-tools"
-require "user.telescope_extensions"
+-- require "user.telescope_extensions"
 

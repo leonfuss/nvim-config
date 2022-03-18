@@ -1,12 +1,18 @@
 local status, cmp = pcall(require,"cmp")
 if not status then
-    print("cmp failed to load")
+    error("cmp failed to load")
     return
 end
 
 local snip_status, luasnip = pcall(require,"luasnip")
 if not snip_status then
-    print("luasnip failed to load")
+    error("luasnip failed to load")
+    return
+end
+
+local lspkind_status, lspkind = pcall(require,"lspkind")
+if not lspkind_status then
+    error("lspkind failed to load")
     return
 end
 
@@ -18,17 +24,12 @@ cmp.setup({
         expand = function(args)
             luasnip.lsp_expand(args.body)
         end
-    }, 
+    },
     mapping = {
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { 'i', 'c'}),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { 'i', 'c'}),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c'}),
-        ["<CR>"] = cmp. mapping.confirm({ select = true })
+              ["<CR>"] = cmp. mapping.confirm({ select = true })
     },
     sources = {
-        { name = "nvim-lsp" },
+        { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
         { name = "crates" },
@@ -37,6 +38,17 @@ cmp.setup({
     documentation = {
         border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
     },
+    formatting = {
+        format = lspkind.cmp_format({
+            mode = "symbol_text" ,
+            menu = ({
+                buffer = "[Buffer]",
+                nvim_lsp = "[LSP]",
+                luasnip = "[Snippet]",
+                path = "[Path]"
+            })
+        })
+    },
     experimental = {
         ghost_text = true
     }
@@ -44,8 +56,20 @@ cmp.setup({
 
 -- setup cmdline competion
 cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({
+        { name = "path" }
+    },
+    {
+        { name = "cmdline" }
+    }
+    )
+
+})
+
+-- setup search completion
+cmp.setup.cmdline("/", {
     sources = {
-        { name = 'cmdline' }
+        { name = "buffer" }
     }
 })
 

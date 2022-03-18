@@ -27,10 +27,11 @@ vim.opt.numberwidth = 4
 vim.opt.scrolloff = 4
 vim.opt.updatetime = 300
 vim.opt.timeoutlen = 500
-vim.opt.formatoptions:remove("cron")
+vim.opt.formatoptions:remove("cro")
 vim.opt.clipboard = "unnamedplus"
 vim.opt.autochdir = true
 vim.opt.termguicolors = true
+vim.opt.signcolumn = "yes"
 vim.opt.textwidth = 80
 vim.colorcolumn = "80"
 
