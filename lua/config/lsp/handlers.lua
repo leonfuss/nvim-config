@@ -77,8 +77,8 @@ local function lsp_keymaps(bufnr)
     -- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
     --vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
-    vim.api.nvim_create_augroup("FormatOnSave", {clear = true})
-    vim.api.nvim_create_autocmd("BufWritePre", { group = "FormatOnSave", callback = function() vim.lsp.buf.formatting_sync() end})
+    -- vim.api.nvim_create_augroup("FormatOnSave", {clear = true})
+    -- vim.api.nvim_create_autocmd("BufWritePre", { group = "FormatOnSave", callback = function() vim.lsp.buf.formatting_sync() end})
     _G.whichkey.register({["<Leader>lf"] = {":lua vim.lsp.buf.formatting_sync()<CR>", "format"}})
 end
 
