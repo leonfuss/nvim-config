@@ -54,3 +54,7 @@ require "user.alpha"
 -- require "user.rusc-tools"
 -- require "user.telescope_extensions"
 
+------------------------------------
+-- Source project specific config --
+------------------------------------
+require "config.extern"
