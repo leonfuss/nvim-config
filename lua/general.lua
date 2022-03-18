@@ -32,8 +32,8 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.autochdir = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
-vim.opt.textwidth = 80
-vim.colorcolumn = "80"
+vim.opt.textwidth = 110
+vim.colorcolumn = "+1"
 
 vim.opt.completeopt = "menuone,noinsert,noselect"
 
