@@ -33,7 +33,7 @@ require "config.lsp"            -- LSP
 require "config.lspsaga"        -- Pretier Lsp
 require "config.comment"        -- Commment.nvim
 require "config.telescope"      -- Telescope
-
+require "config.fidget"         -- LSP Server progress indicator
 
 
 -- require "user.telescope"

@@ -85,6 +85,7 @@ packer.startup(function(use)
     use "neovim/nvim-lspconfig"
     use "nvim-lua/lsp_extensions.nvim"
     use "williamboman/nvim-lsp-installer"
+    use "j-hui/fidget.nvim"             -- LSP Server progress indicator
 
     -- Treesitter
     use {"nvim-treesitter/nvim-treesitter", run = ":TSUpdate"}
