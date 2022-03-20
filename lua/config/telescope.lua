@@ -131,10 +131,10 @@ _G.whichkey.register({
     ['<leader>'] = {
         -- f = {"<cmd>lua require('telescope.buildin').git_files()<CR>", "find git files"},
         f = {":Telescope git_files<CR>", "find git files"},
+        l = {":Telescope live_grep<CR>", "live grep"},
         F = {":Telescope file_browser<CR>", "file browser"},
         ['t'] = {
             name = "telescope",
-            g = {":Telescope live_grep<CR>", "live grep"},
             f = {":Telescope find_files<CR>", "find files"},
             r = {"<cmd>lua require('telescope.builtin').reloader()<CR>", "reload module"},
             p = {":Telescope projects", "project"},
