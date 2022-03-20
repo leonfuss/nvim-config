@@ -18,6 +18,9 @@ local opts = {
             ["rust-analyzer"] = {
                 checkOnSave = {
                     command = "clippy"
+                },
+                rustfmt = {
+                    extra_args = "+nightly"
                 }
             }
         }
