@@ -92,7 +92,7 @@ require('telescope').setup {
 }
 
 -- Telescope find_files centered dropdown list
-map('n', '<C-f>', ':Telescope find_files<cr>', { silent = true })
+map('n', '<C-o>', ':Telescope find_files<cr>', { silent = true })
 map('n', '<leader>b', ':Telescope buffers<cr>', { silent = true })
 
 require('telescope').load_extension('fzf') -- override sorter
@@ -121,6 +121,10 @@ cmp.setup({
         ghost_text = true
     }
 })
+
+require('nvim-autopairs').setup{}
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done({map_char = {tex = ''}}))
 
 -- LSP setup
 require('nvim-lsp-setup').setup({
