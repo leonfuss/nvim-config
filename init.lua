@@ -38,8 +38,6 @@ local map = vim.keymap.set
 
 map('i', 'jk', '<ESC>') -- better esc
 map('i', 'kj', '<ESC>')
-map({ 'n', 'v' }, 'L', '$') -- practical vertical navigation
-map({ 'n', 'v' }, 'H', '^')
 map({ 'n', 'v' }, 'ö', '{')
 map({ 'n', 'v' }, 'ä', '}')
 
@@ -92,14 +90,16 @@ require('telescope').setup {
 }
 
 -- Telescope find_files centered dropdown list
-map('n', '<C-o>', ':Telescope find_files<cr>', { silent = true })
+map('n', '<leader> ', ':Telescope find_files<cr>', { silent = true })
 map('n', '<leader>b', ':Telescope buffers<cr>', { silent = true })
+map('n', 'gl', 'vim.diagnostic.open_float()<cr>', {silent = true})
 
 require('telescope').load_extension('fzf') -- override sorter
 
 
 -- CMP setup
 local cmp = require 'cmp'
+require('crates').setup()
 
 cmp.setup({
     snippet = {
@@ -108,12 +108,15 @@ cmp.setup({
         end,
     },
     mapping = {
-        ['<Tab>'] = cmp.mapping.confirm({ select = true })
+        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-j>'] = cmp.mapping.select_next_item(),
+        ['<C-k>'] = cmp.mapping.select_prev_item(),
     },
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip' },
+        { name = 'crates'},
     }, {
         { name = 'buffer' },
     }),
@@ -152,10 +155,33 @@ require('nvim-lsp-setup').setup({
                 }
             },
         })
+        
     }
 })
 
+-- Language shortcuts
+map('n', '<leader>t', ':RustOpenCargo<CR>',{ silent = true })
+
 require('fidget').setup({})
+
+-- Symbol outline
+vim.g.symbols_outline = {
+    show_guides = false,
+    auto_preview = false,
+    symbol_blacklist = {
+        'Field'
+    }
+}
+map('n', '<leader>s', ':SymbolsOutline<CR>', {silent = true})
+
+-- trouble.nvim
+require('trouble').setup{}
+map('n', '<leader>xx', ':TroubleToggle<CR>', {silent = true})
+map('n', '<leader>xw', ':TroubleToggle workspace_diagnostics<CR>', {silent = true})
+map('n', '<leader>xd', ':TroubleToggle document_diagnostics<CR>', {silent = true})
+map('n', '<leader>xl', ':TroubleToggle loclist<CR>', {silent = true})
+map('n', '<leader>xq', ':TroubleToggle quickfix<CR>', {silent = true})
+map('n', 'gR', ':TroubleToggle lsp_references<CR>', {silent = true})
 
 -- Feline setup (statusline)
 --require('feline-config')

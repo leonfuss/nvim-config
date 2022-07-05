@@ -38,11 +38,18 @@ return require('packer').startup({ function(use)
     use 'junnplus/nvim-lsp-setup' -- esay lsp setup
     use 'j-hui/fidget.nvim' -- nvim-lsp-progress spinner
 
+
     use 'hrsh7th/nvim-cmp' -- Completion
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lsp-signature-help'
+    use 'Saecki/crates.nvim'
     use 'windwp/nvim-autopairs'
+
+    use 'simrat39/symbols-outline.nvim'
+    use 'folke/trouble.nvim'
+
+    use 'mfussenegger/nvim-dap'
 
     use 'saadparwaiz1/cmp_luasnip' -- snippets :)
     use 'L3MON4D3/LuaSnip'
